@@ -63,7 +63,7 @@ select {
 #site-branding {
 	position: fixed;
 	display: block;
-	z-index:3;
+/*	z-index:3;*/
 	width: 100%;
 	height:em(50px);
 	top:0;
@@ -129,9 +129,96 @@ select {
 			display:inline-block;
 		}
 	}
+}
+
+#burger-button {
+	position: absolute;
+	width: 40px;
+	top: 0.8em;
+	left: 1em;
+}
+
+#burger-toggle {
+  cursor: pointer;
+  padding: 11px 0 11px 0px;
+  display: block;
+
+
+  @include media($tablet-up){
+  	display:none;
+  }
+}
+
+#burger-toggle span,
+#burger-toggle span:before,
+#burger-toggle span:after {
+  cursor: pointer;
+  height: 6px;
+  width: 100%;
+  background-color: $c-red;
+  position: relative;
+  display: block;
+  content: '';
+
+  transition: all 0.25s $ease-out-back;
+}
+
+#burger-toggle span:before {
+  top: -11px;
+}
+
+#burger-toggle span:after {
+  bottom: -5px;
+}
+
+#burger-toggle.is-open span  {
+  background-color:rgba(255,255,255,0);
+}
+
+#burger-toggle.is-open span:before,
+#burger-toggle.is-open span:after {
+transform-origin: 50% 50%;
+}
+
+#burger-toggle.is-open span:before {
+/*  top:0;*/
+  transform: rotateZ(45deg);
+}
+
+#burger-toggle.is-open span:after {
+/*  bottom:0;*/
+  transform: rotateZ(-45deg);
+}
+
+#burger-menu {
+    background-color: white;
+    position:  fixed;
+    height: 100%;
+    width: 25%;
+    left: -25%;
+   /* z-index: 1000;*/
+
+    transition: left 0.25s $ease-out-sine;
+
+    &.is-open {
+      left:0;
+    }
 }	
 
 #body-container {
+	position:relative;
+	height:100%;
+	width:100%;
+	left:0;
+
+	transition: left 0.25s $ease-out-sine;
+
+	&.is-open {
+		transform: translateX(25%);
+	}
+}
+
+#content-container {
 	position:relative;
 	display: block;
 	top: em(50px);
@@ -175,7 +262,7 @@ select {
 	padding:0;
 	background-color: $c-blue;
 	text-align: center;
-	z-index:3;
+/*	z-index:3;*/
 }
 
 .content {
@@ -363,3 +450,20 @@ select {
 	text-align: center;
 }
  
+
+
+
+
+
+ /* THE NEW BURGER BTN STUFF */
+/* .new-burger-btn {
+ 	width: 50px;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+ }
+ .line {
+ 	border-top: 5px solid red;
+ 	padding-bottom: 5px;
+
+ }*/

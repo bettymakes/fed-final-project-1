@@ -4,10 +4,20 @@
 
 	$(document).ready(function() {
 
-	// // ARTICLE SORT?
-	// 	$("#dvnt").on('click', function() {
-	// 		$('.dvnt-hide').hide();
-	// 	});
+	// BURGER MENU
+
+	$('#burger-button').on('click', function(eventObject){
+		console.log('this is clicked');
+	    eventObject.preventDefault();
+	    $(this).add('#burger-toggle').toggleClass('is-open');
+	    $('#body-container').toggleClass('is-open');
+	});
+
+	// $('.test').on('click', function(){
+	// 	console.log('test is clicked');
+	//     // $('this').add('#burger-toggle').toggleClass('is-open');
+	//     $('#body-container').toggleClass('is-open');
+	// });
 
 	// DROP DOWN NAV
 		$("select").selectOrDie();
