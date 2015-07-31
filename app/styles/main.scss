@@ -69,24 +69,33 @@ select {
 	top:0;
 	background-color: $c-white;
 
-	& .site-logo {
-		display:block;
-		height:100%;
-		padding: 0.25em 0em;
-		text-align: center;
+	& #burger-button {
 		position: absolute;
+		width: 40px;
+		display:inline-block;
+		top: 0.8em;
+		left: 1em;
+		z-index: 1000;
+	}
+
+	& .site-logo {
+		position: absolute;
+		display:block;
 		top: 0;
 		left: 0;
 		right: 0;
+		height:100%;
+		padding: 0.25em 0em;
+		text-align: center;
 	}
 
 	& .site-title {
 		position:absolute;
 		display: none;
-		height:100%;
-		width:auto;
 		left:50%;
 		top:0;
+		height:100%;
+		width:auto;
 		transform: translateX(-50%);
 		margin:0em auto;
 		padding:0.75em 0em;
@@ -102,9 +111,10 @@ select {
 	}
 	
 	& .social-wrapper {
-		position:relative;
+		position:absolute;
 		display:none;
-		float:right;
+		top:0;
+		right:0;
 		height:100%;
 		width:auto;
 		padding: 0.75em 0em;
@@ -120,8 +130,7 @@ select {
 
 	@include media($tablet-up) {
 		& .site-logo {
-			display:inline-block;
-			float:left;
+			left:0;
 			margin-left:1em;
 			text-align: left;
 		}
@@ -133,94 +142,6 @@ select {
 		& .social-wrapper {
 			display:inline-block;
 		}
-	}
-}
-
-.burger-button {
-/*	position: absolute;*/
-	width: 40px;
-	display:inline-block;
-	top: 0.8em;
-	left: 1em;
-}
-
-.burger-toggle {
-  cursor: pointer;
-  padding: 11px 0 11px 0px;
-  display: block;
-
-
-  @include media($tablet-up){
-  	display:none;
-  }
-}
-
-.burger-toggle span,
-.burger-toggle span:before,
-.burger-toggle span:after {
-  cursor: pointer;
-  height: 6px;
-  width: 100%;
-  background-color: $c-red;
-  position: relative;
-  display: block;
-  content: '';
-
-  transition: all 0.25s $ease-out-back;
-}
-
-.burger-toggle span:before {
-  top: -11px;
-}
-
-.burger-toggle span:after {
-  bottom: -5px;
-}
-
-.burger-toggle.is-open span  {
-  background-color:rgba(255,255,255,0);
-}
-
-.burger-toggle.is-open span:before,
-.burger-toggle.is-open span:after {
-transform-origin: 50% 50%;
-}
-
-.burger-toggle.is-open span:before {
-  top:0;
-  transform: rotateZ(45deg);
-}
-
-.burger-toggle.is-open span:after {
-  bottom:0;
-  transform: rotateZ(-45deg);
-}
-
- .burger-menu {
-    background-color: white;
-    position:  absolute;
-    height: 100%;
-    width: 25%;
-    left: -25%;
-   z-index: 1000;
-
-    transition: left 0.25s $ease-out-sine;
-
-    &.is-open {
-      left:0;
-    }
-}	 
-
-#body-container {
-	position:absolute;
-	height:100%;
-	width:100%;
-	left:0;
-
-	transition: left 0.25s $ease-out-sine;
-
-	&.is-open {
-		transform: translateX(25%);
 	}
 }
 
@@ -462,7 +383,7 @@ transform-origin: 50% 50%;
 
 
  /* THE NEW BURGER BTN STUFF */
- .new-burger-btn {
+/* .new-burger-btn {
  	width: 50px;
     position: absolute;
     top: 1rem;
@@ -472,4 +393,78 @@ transform-origin: 50% 50%;
  	border-top: 5px solid red;
  	padding-bottom: 5px;
 
- }
+ }*/
+
+ #burger-toggle {
+  cursor: pointer;
+  padding: 11px 0 11px 0px;
+  display: block;
+
+
+  @include media($tablet-up){
+  	display:none;
+  }
+}
+
+#burger-toggle span,
+#burger-toggle span:before,
+#burger-toggle span:after {
+  cursor: pointer;
+  height: 6px;
+  width: 100%;
+  background-color: $c-red;
+  position: relative;
+  display: block;
+  content: '';
+
+  transition: all 0.25s $ease-out-back;
+}
+
+#burger-toggle span:before {
+  top: -11px;
+}
+
+#burger-toggle span:after {
+  bottom: -5px;
+}
+
+#burger-toggle.is-open span  {
+  background-color:rgba(255,255,255,0);
+}
+
+#burger-toggle.is-open span:before,
+#burger-toggle.is-open span:after {
+transform-origin: 50% 50%;
+}
+
+#burger-toggle.is-open span:before {
+  top:0;
+  transform: rotateZ(45deg);
+}
+
+#burger-toggle.is-open span:after {
+  bottom:0;
+  transform: rotateZ(-45deg);
+}
+
+ #burger-menu {
+    background-color: white;
+    position:  fixed;
+    height: 100%;
+    width: 300px;
+    left: -300px;
+   z-index: 1000;
+}	 
+
+#body-container {
+	position:relative;
+	height:100%;
+	width:100%;
+	left:0;
+
+	transition: left 0.25s $ease-out-sine;
+
+	&.is-open {
+		transform: translateX(300px);
+	}
+}

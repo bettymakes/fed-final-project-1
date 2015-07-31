@@ -6,18 +6,18 @@
 
 	// BURGER MENU
 
-	// $('.burger-toggle').on('click', function(eventObject){
-	// 	console.log('this is clicked');
-	//     eventObject.preventDefault();
-	//     /*$(this).add('#burger-toggle').toggleClass('is-open');*/
-	//     $('#body-container').toggleClass('is-open');
-	// });
-
-	$('.test').on('click', function(){
-		console.log('test is clicked');
-	    // $('this').add('#burger-toggle').toggleClass('is-open');
+	$('#burger-button').on('click', function() {
+		console.log('this is clicked');
+	    // eventObject.preventDefault();
+	    /*$(this).add('#burger-toggle').toggleClass('is-open');*/
 	    $('#body-container').toggleClass('is-open');
 	});
+
+	// $('.test').on('click', function(){
+	// 	console.log('test is clicked');
+	//     // $('this').add('#burger-toggle').toggleClass('is-open');
+	//     $('#body-container').toggleClass('is-open');
+	// });
 
 	// DROP DOWN NAV
 		$("select").selectOrDie();
