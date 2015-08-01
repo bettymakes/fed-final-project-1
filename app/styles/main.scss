@@ -16,7 +16,11 @@ $sm-tablet: new-breakpoint(min-width em(551) max-width em(699));
 $tablet: new-breakpoint(min-width em(700) max-width em(949));
 $desktop: new-breakpoint(min-width em(950) max-width em(3000));
 
-/****Variables****/
+/********************************************************************************************
+********************************************************************************************
+Variables Styles
+********************************************************************************************
+********************************************************************************************/
 
 $sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $serif: Georgia, Baskerville, "Times New Roman", serif;
@@ -31,7 +35,11 @@ $c-teal: #25bdae;
 
 $outer-container-max-width: 1200px;
 
-/****Base Styles****/
+/********************************************************************************************
+********************************************************************************************
+Base Styles
+********************************************************************************************
+********************************************************************************************/
 
 html,
 body {
@@ -52,13 +60,33 @@ select {
 	border: 0;
 }
 
+button {
+	border: none;
+	outline: none;
+}
+
 .list-unstyled {
 	padding: 0;
 	margin: 0;
 	list-style-type: none;
 }
 
-/****Layout Styles****/
+/********************************************************************************************
+********************************************************************************************
+Layout Styles
+********************************************************************************************
+********************************************************************************************/
+
+#body-container {
+	position:relative;
+	height:100%;
+	width:100%;
+	left:0;
+
+	&.is-open {
+	transform: translateX(35%);
+	}
+}
 
 #site-branding {
 	position: fixed;
@@ -71,9 +99,9 @@ select {
 
 	& #burger-button {
 		position: absolute;
-		width: 40px;
+		width: 30px;
 		display:inline-block;
-		top: 0.8em;
+		top: 0.9em;
 		left: 1em;
 		z-index: 1000;
 	}
@@ -109,8 +137,8 @@ select {
 			padding:0;
 		}
 	}
-	
-	& .social-wrapper {
+
+	& .social-desktop {
 		position:absolute;
 		display:none;
 		top:0;
@@ -128,6 +156,20 @@ select {
 		}
 	}
 
+	& #social-button {
+		position: absolute;
+		display:inline-block;
+		top: 0.7em;
+		right: 1em;
+		width: 28px;
+		height:28px;
+		padding:3px;
+		border-radius: 50%;
+		background-color: $c-red;
+		text-align: center;
+		z-index: 1000;
+	}
+
 	@include media($tablet-up) {
 		& .site-logo {
 			left:0;
@@ -139,10 +181,61 @@ select {
 			display:block;
 		}
 
-		& .social-wrapper {
+		& .social-desktop {
 			display:inline-block;
 		}
+
+		& #social-button {
+			display:none;
+		}
 	}
+}
+
+#social-mobile {
+	position:fixed;
+	display:none;
+	top:3.125rem;
+	right:.7rem;
+	width:40px;
+	height:auto;
+	padding:0.5rem 0.3rem 0.4rem;
+	overflow: none;
+	background-color: $c-white;
+	-webkit-border-bottom-right-radius: 0.5rem;
+	-webkit-border-bottom-left-radius: 0.5rem;
+	-moz-border-radius-bottomright: 0.5rem;
+	-moz-border-radius-bottomleft: 0.5rem;
+	border-bottom-right-radius: 0.5rem;
+	border-bottom-left-radius: 0.5rem;
+	-webkit-box-shadow: 0px 6px 23px -1px rgba(0,0,0,0.93);
+	-moz-box-shadow: 0px 6px 23px -1px rgba(0,0,0,0.93);
+	box-shadow: 0px 6px 23px -1px rgba(0,0,0,0.93);
+	z-index: 1000;
+
+	animation-name:bounce;
+	animation-duration:1s;
+	animation-delay:0;
+
+	&.is-open {
+		display:inline-block;
+	}
+}
+
+#aside-menu {
+	background-color: $c-dark-grey;
+    position:  fixed;
+    height: 100%;
+    width: 35%;
+    left: -35%;
+    padding-top:1rem;
+   	z-index: 1000;
+	-webkit-box-shadow: inset -15px 0px 23px -8px rgba(0,0,0,0.51);
+	-moz-box-shadow: inset -15px 0px 23px -8px rgba(0,0,0,0.51);
+	box-shadow: inset -15px 0px 23px -8px rgba(0,0,0,0.51);
+
+	animation-name:slideInLeft;
+	animation-duration:1s;
+	animation-delay:0;
 }
 
 #content-container {
@@ -205,7 +298,198 @@ select {
 	margin-top:-2.5%;
 }
 
-/****Module Styles****/
+/********************************************************************************************
+********************************************************************************************
+Module Styles
+********************************************************************************************
+********************************************************************************************/
+
+#burger-toggle {
+  cursor: pointer;
+  padding: 10px 0 10px 0px;
+  display: block;
+
+
+  @include media($tablet-up){
+  	display:none;
+  }
+}
+
+#burger-toggle span,
+#burger-toggle span:before,
+#burger-toggle span:after {
+  cursor: pointer;
+  height: 4px;
+  width: 100%;
+  background-color: $c-red;
+  position: relative;
+  display: block;
+  content: '';
+
+  transition: all 0.25s $ease-out-back;
+}
+
+#burger-toggle span:before {
+  top: -8px;
+}
+
+#burger-toggle span:after {
+  top: 4px;
+}
+
+#burger-toggle.is-open span  {
+  background-color:rgba(255,255,255,0);
+}
+
+#burger-toggle.is-open span:before,
+#burger-toggle.is-open span:after {
+	transform-origin: 50% 50%;
+}
+
+#burger-toggle.is-open span:before {
+  top:0px;
+  transform: rotateZ(45deg);
+}
+
+#burger-toggle.is-open span:after {
+  top:-4px;
+  transform: rotateZ(-45deg);
+}
+
+#social-toggle {
+  cursor: pointer;
+  padding: 11px 0 11px 0px;
+  display: block;
+
+
+  @include media($tablet-up){
+  	display:none;
+  }
+}
+
+.btn {
+	display:block;
+	width:85%;
+	margin:0 auto 0.6rem;
+	padding:0.5em 0.75em;
+	color:$c-white;
+	text-align: center;
+	font-size:0.8rem;
+	font-weight:600;
+	border-radius: 0.5em;
+	-moz-border-radius: 0.5em;
+	-webkit-border-radius: 0.5em;
+}
+
+.signup {
+	background-color: $c-blue;
+
+	 &:hover {
+		color: $c-red;
+		background-color: $c-teal;
+
+		& > a {
+			color: $c-red;
+			text-decoration: underline;
+		}
+	}
+	
+	& > a {
+		color: $c-white;
+		text-decoration: none;
+	}
+}
+
+.create {
+	background-color: $c-teal;
+
+	 &:hover {
+		color: $c-red;
+		background-color: $c-blue;
+
+		& > a {
+			color: $c-red;
+			text-decoration: underline;
+		}
+	}
+	
+	& > a {
+		color: $c-white;
+		text-decoration: none;
+	}
+}
+
+.menu-hamburger {
+	@extend .list-unstyled;
+	margin-top:2rem;
+
+	& > li {
+		padding:0.5rem 0rem 0.5rem 1.25rem;
+		font-size:0.8rem;
+		color:$c-white;
+
+		&:hover {
+			color: $c-red;
+			background-color: $c-teal;
+
+		& > a {
+			color: $c-red;
+			text-decoration: underline;
+		}
+	}
+
+	& > a {
+			color: $c-white;
+			text-decoration: none;
+		}
+	}
+}
+
+.stores {
+	& > li {
+		font-weight:600;
+	}
+}
+
+.info {
+	& > li {
+		padding:0rem 0rem 0rem 1.25rem;
+	}
+}
+
+#social-toggle span,
+#social-toggle span:before {
+  cursor: pointer;
+  height: 2px;
+  width: 100%;
+  background-color: $c-white;
+  position: relative;
+  display: block;
+  content: '';
+
+  transition: all 0.25s $ease-out-back;
+}
+
+#social-toggle span {
+ 	top: -1px;
+  	transform-origin: 50% 50%;
+}
+
+#social-toggle span:before {
+	transform: rotateZ(90deg);
+  	transform-origin: 50% 50%;
+}
+
+#social-toggle.is-open span {
+	transform-origin: 50% 50%;
+	transform: rotateZ(-135deg);
+	top:-1px;
+}
+
+#social-toggle.is-open span:before {
+	transform-origin: 50% 50%;
+	transform: rotateZ(-90deg);
+}
 
 .menu {
 	@extend .list-unstyled;
@@ -254,12 +538,19 @@ select {
 	& .intro {
 		margin:0;
 		padding:0;
-		font-family: $serif;
-		font-size:2vw;
-		color:$c-white;
+		font-family: $sans-serif;
+		font-size:2.5vw;
+		color: $c-white;
+		-webkit-text-fill-color: $c-white;
+		-webkit-text-stroke-width: 1px;
+		-webkit-text-stroke-color: $c-dark-grey;
 		vertical-align: middle;
 		text-align: center;
-		text-shadow: 0px 0px 15px $c-black;
+		text-shadow: 1px 1px 10px $c-black;
+		animation-name:tada;
+		animation-duration:1s;
+		animation-delay:1s;
+
 		} 
 
 		@include media($phone-up) {
@@ -270,7 +561,6 @@ select {
 			transform: translateY(-50%);
 		}
 	}
-
 
 .article-listing {
 	width:100%;
@@ -309,8 +599,8 @@ select {
 	}
 }
 
- .article-meta {
-	
+.article-meta {
+
 	& .article-title {
 		position:relative;
 		display:block;
@@ -318,19 +608,19 @@ select {
 		padding:0.5em;
 		color: $c-white;
 		background-color:$c-teal;
-	}
-	
-	& .article-description {
-		margin:0;
-		padding:0.75em;
-	}
+		}
 
-	& .article-link {
-		display:block;
-		padding:0.25em 0.75em;
-		border-top:1px solid $c-light-grey;
-		color: $c-red;
-		text-decoration: none;
+		& .article-description {
+			margin:0;
+			padding:0.75em;
+		}
+
+		& .article-link {
+			display:block;
+			padding:0.25em 0.75em;
+			border-top:1px solid $c-light-grey;
+			color: $c-red;
+			text-decoration: none;
 
 		&:hover {
 			text-decoration: underline;
@@ -376,95 +666,76 @@ select {
 	font-weight:bold;
 	text-align: center;
 }
- 
 
+/********************************************************************************************
+********************************************************************************************
+Animation Styles
+********************************************************************************************
+********************************************************************************************/
 
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    transform: translate3d(0,0,0);
+  }
 
+  40%, 43% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -15px, 0);
+  }
 
+  70% {
+    animation-timing-function: cubic-bezier(0.755, 0.050, 0.855, 0.060);
+    transform: translate3d(0, -7px, 0);
+  }
 
- /* THE NEW BURGER BTN STUFF */
-/* .new-burger-btn {
- 	width: 50px;
-    position: absolute;
-    top: 1rem;
-    left: 1rem;
- }
- .line {
- 	border-top: 5px solid red;
- 	padding-bottom: 5px;
-
- }*/
-
- #burger-toggle {
-  cursor: pointer;
-  padding: 11px 0 11px 0px;
-  display: block;
-
-
-  @include media($tablet-up){
-  	display:none;
+  90% {
+    transform: translate3d(0,-2px,0);
   }
 }
 
-#burger-toggle span,
-#burger-toggle span:before,
-#burger-toggle span:after {
-  cursor: pointer;
-  height: 6px;
-  width: 100%;
-  background-color: $c-red;
-  position: relative;
-  display: block;
-  content: '';
-
-  transition: all 0.25s $ease-out-back;
+.bounce {
+  animation-name: bounce;
+  transform-origin: center bottom;
 }
 
-#burger-toggle span:before {
-  top: -11px;
+@keyframes slideInLeft {
+  0% {
+    transform: translate3d(-100%, 0, 0);
+    visibility: visible;
+  }
+
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
 }
 
-#burger-toggle span:after {
-  bottom: -5px;
+.slideInLeft {
+  animation-name: slideInLeft;
 }
 
-#burger-toggle.is-open span  {
-  background-color:rgba(255,255,255,0);
+@keyframes tada {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  10%, 20% {
+    transform: scale3d(.9, .9, .9) rotate3d(0, 0, 1, -3deg);
+  }
+
+  30%, 50%, 70%, 90% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+  }
+
+  40%, 60%, 80% {
+    transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
 }
 
-#burger-toggle.is-open span:before,
-#burger-toggle.is-open span:after {
-transform-origin: 50% 50%;
-}
-
-#burger-toggle.is-open span:before {
-  top:0;
-  transform: rotateZ(45deg);
-}
-
-#burger-toggle.is-open span:after {
-  bottom:0;
-  transform: rotateZ(-45deg);
-}
-
- #burger-menu {
-    background-color: white;
-    position:  fixed;
-    height: 100%;
-    width: 300px;
-    left: -300px;
-   z-index: 1000;
-}	 
-
-#body-container {
-	position:relative;
-	height:100%;
-	width:100%;
-	left:0;
-
-	transition: left 0.25s $ease-out-sine;
-
-	&.is-open {
-		transform: translateX(300px);
-	}
+.tada {
+  animation-name: tada;
 }
