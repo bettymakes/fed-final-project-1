@@ -198,7 +198,8 @@ module.exports = function (grunt) {
                         'images/**',
                         'styles/fonts/**',
                         'fonts/**',
-                        'README.md'
+                        'README.md',
+                        '**/*.html'
                     ]
                 },{
                   expand: true,
@@ -231,7 +232,7 @@ module.exports = function (grunt) {
           },
           pages: {
             options: {
-              remote: '!!! PASTE YOUR GITHUB REPO URL HERE',
+              remote: 'https://github.com/atomwenzel/fed-final-project.git',
               branch: 'gh-pages'
             }
           },
