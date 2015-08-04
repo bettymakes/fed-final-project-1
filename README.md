@@ -1,3 +1,3 @@
-# Week-6
+# FED-Final-Project
 
-You should put a description of your project here, plus any setup instructions for other developers, if necessary.
+This is my final project for the Bitmaker FED Cohort.
