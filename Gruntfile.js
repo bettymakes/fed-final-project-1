@@ -232,7 +232,7 @@ module.exports = function (grunt) {
           },
           pages: {
             options: {
-              remote: 'https://github.com/atomwenzel/fed-final-project.git',
+              remote: 'https://github.com/bettymakes/fed-final-project-1.git',
               branch: 'gh-pages'
             }
           },
